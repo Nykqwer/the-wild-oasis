@@ -3,8 +3,7 @@ import DateSelector from './DateSelector'
 import ReservationForm from './ReservationForm'
 import { getBookedDatesByCabinId, getSettings } from '../_lib/data-service';
 import { Cabin } from '../_lib/data-service';
-import { ReservationProvider } from './ReservationContext';
-import ReservationReminder from './ReservationReminder';
+
 import { auth } from '../_lib/auth';
 import LoginMessage from './LoginMessage';
 
