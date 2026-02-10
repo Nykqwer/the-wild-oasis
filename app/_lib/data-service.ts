@@ -32,7 +32,7 @@ export type BookingWithCabin = {
     name: string;
     image: string;
   }; // <-- array
-  status: string; // string from DB
+  status: string; 
 };
 
 
@@ -113,12 +113,10 @@ export async function getBooking(id : number) {
 
   return data;
 }
-
 export async function getBookings(guestId: number) {
-
   const { data, error } = await supabase
     .from("bookings")
-      .select(`
+    .select(`
       id,
       created_at,
       startDate,
@@ -141,12 +139,15 @@ export async function getBookings(guestId: number) {
     throw new Error("Bookings could not be loaded");
   }
 
-  if (!data) {
-    console.warn("⚠️ Supabase returned no data (null)");
-    return [];
-  }
+  if (!data) return [];
 
-  return data;
+  // 🔑 NORMALIZE HERE
+  return data.map((booking) => ({
+    ...booking,
+    cabins: Array.isArray(booking.cabins)
+      ? booking.cabins[0]
+      : booking.cabins,
+  }));
 }
 
 

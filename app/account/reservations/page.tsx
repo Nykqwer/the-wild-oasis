@@ -14,19 +14,13 @@ export const metadata ={
 export default async function Page() {
   // CHANGE
 
-   const session = await auth();
+  const session = await auth();
 
   if (!session?.user.guestId) {
   throw new Error("Guest ID missing from session");
 }
 
-
-
-
   const bookings = await getBookings(session.user.guestId);
-
-
-  console.log(bookings);
 
 
   return (

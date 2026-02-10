@@ -29,8 +29,14 @@ function ReservationCard({ booking, onDelete }: ReservationCardProps) {
     totalPrice,
     numGuests,
     created_at,
-    cabins: { name, image },
+    cabins:{
+      name,
+      image
+    }
   } = booking;
+
+
+  console.log(booking)
 
   return (
     <div className='flex border border-primary-800'>
